@@ -40,26 +40,36 @@ bookCard.innerHTML = `
   <div class="book-details">
     <h3>${book.title}</h3>
     <p>by ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
-  </div>
+    <a href="https://openlibrary.org${book.key}" >View Details</a>
+   </div>
 `;
 bookDisplay.appendChild(bookCard);
 })
 }
 
 //fetches data from API
-function fetchBooks(searchQuery){
-  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery)}`) 
+function fetchBooks(searchTerm){
+  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
   .then(res => res.json())
   .then(data => {
     const books = data.docs
-    displayBooks(books)
+    if(books.length===0){
+      displayErrorText(`No books found from your search.`)
+    } else{
+     displayBooks(books)
+    }
+    
   })
-  .catch(error=> console.error('Error fetching books:', error))
+  .catch(error=> {console.error('Error fetching books:', error)})
+}
+function displayErrorText(){
+  console.log(message)
 }
 
-//submit event
+//search form event listener
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
+
 searchForm.addEventListener('submit', (e)=>{
 e.preventDefault()
 const searchTerm = searchInput.value.trim()
@@ -67,7 +77,7 @@ fetchBooks(searchTerm)
 searchInput.value = ''
 })
 
-//event listeners
+//Nav links event listeners
 aboutLink.addEventListener('click', (event) => {
   event.preventDefault();
   aboutSection.classList.toggle('hidden');
