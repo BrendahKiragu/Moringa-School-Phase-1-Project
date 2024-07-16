@@ -49,3 +49,11 @@ nav ul li a {
     background-color: #45a049;
     color: white;
 }
+
+main {
+    padding: 2em;
+}
+
+section {
+    margin-bottom: 2em;
+}
