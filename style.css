@@ -44,3 +44,8 @@ nav ul li a {
     border: none;
     cursor: pointer;
 }
+
+#search-form button:hover {
+    background-color: #45a049;
+    color: white;
+}
