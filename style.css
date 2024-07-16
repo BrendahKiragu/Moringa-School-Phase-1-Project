@@ -12,3 +12,35 @@ header {
     padding: 1em 0;
     text-align: center;
 }
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 2em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#search-input {
+    padding: 0.5em;
+    width: 200px;
+    border-radius: 5px;
+}
+
+#search-form button {
+    padding: 0.5em;
+    background-color: #ffffff;
+    color: #4CAF50;
+    border: none;
+    cursor: pointer;
+}
