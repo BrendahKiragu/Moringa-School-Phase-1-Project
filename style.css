@@ -53,12 +53,15 @@ nav ul li a {
 main {
     padding: 2em;
 }
+.hidden{
+    display: none;
+}
 
 section {
     margin-bottom: 2em;
 }
 
-h3 {
+h2 {
     border-bottom: 2px solid #4CAF50;
     padding-bottom: 0.5em;
 }
