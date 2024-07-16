@@ -46,6 +46,18 @@ bookDisplay.appendChild(bookCard);
 })
 }
 
+//fetches data from API
+function fetchBooks(searchQuery){
+  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery)}`) 
+  .then(res => res.json())
+  .then(data => {
+    const books = data.docs
+    displayBooks(books)
+  })
+  .catch(error=> console.error('Error fetching books:', error))
+}
+
+
 //event listeners
   if (aboutLink && aboutSection) {
     console.log('Elements found');
