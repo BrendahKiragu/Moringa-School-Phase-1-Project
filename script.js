@@ -2,7 +2,7 @@
 // Fetch API Request
 //returned data has an object with a docs array
 function fetchBooks (){
-const url = 'https://openlibrary.org/search.json?q=${query}';
+const url = 'http://localhost:3000/books';
 
 fetch(url)
   .then(res => res.json())
