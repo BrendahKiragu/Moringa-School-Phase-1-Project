@@ -63,33 +63,28 @@ const searchInput = document.getElementById('search-input')
 searchForm.addEventListener('submit', (e)=>{
 e.preventDefault()
 const searchTerm = searchInput.value.trim()
-if (!searchTerm) return
 fetchBooks(searchTerm)
 searchInput.value = ''
 })
 
 //event listeners
-  if (aboutLink && aboutSection) {
-    console.log('Elements found');
-    aboutLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      console.log('About link clicked');
-      aboutSection.classList.toggle('hidden');
-    });
-  }
-  if (homeLink && homeSection) {
-    homeLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      homeSection.classList.toggle('hidden');
-    });
-  }
-   if (suggestionsLink && suggestionsSection) {
-    suggestionsLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      suggestionsSection.classList.toggle('hidden');
+aboutLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  aboutSection.classList.toggle('hidden');
+});
 
-      fetchBooks('query')
-    });
-  }
+homeLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  homeSection.classList.toggle('hidden');
+});
+
+suggestionsLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  suggestionsSection.classList.toggle('hidden')
+ });
+
+const searchTerm = searchInput.value.trim();
+fetchBooks(searchTerm);
+   
 });
 
