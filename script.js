@@ -19,6 +19,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const aboutLink = document.getElementById('about-link');
   const aboutSection = document.getElementById('about');
+  const homeLink = document.getElementById('home-link');
+  const homeSection = document.getElementById('home');
 
   if (aboutLink && aboutSection) {
     console.log('Elements found');
@@ -27,7 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('About link clicked');
       aboutSection.classList.toggle('hidden');
     });
-  } else {
-    console.error('Elements not found');
+  }
+  if (homeLink && homeSection) {
+    homeLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      homeSection.classList.toggle('hidden');
+    });
   }
 });
