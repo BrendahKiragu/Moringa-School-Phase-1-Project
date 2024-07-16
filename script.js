@@ -57,6 +57,16 @@ function fetchBooks(searchQuery){
   .catch(error=> console.error('Error fetching books:', error))
 }
 
+//submit event
+const searchForm = document.getElementById('search-form')
+const searchInput = document.getElementById('search-input')
+searchForm.addEventListener('submit', (e)=>{
+e.preventDefault()
+const searchTerm = searchInput.value.trim()
+if (!searchTerm) return
+fetchBooks(searchTerm)
+searchInput.value = ''
+})
 
 //event listeners
   if (aboutLink && aboutSection) {
