@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutSection = document.getElementById('about');
   const homeLink = document.getElementById('home-link');
   const homeSection = document.getElementById('home');
+  const suggestionsLink = document.getElementById('suggestions-link');
+  const suggestionsSection = document.getElementById('suggestions');
 
   if (aboutLink && aboutSection) {
     console.log('Elements found');
@@ -34,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     homeLink.addEventListener('click', (event) => {
       event.preventDefault();
       homeSection.classList.toggle('hidden');
+    });
+  }
+   if (suggestionsLink && suggestionsSection) {
+    suggestionsLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      suggestionsSection.classList.toggle('hidden');
     });
   }
 });
