@@ -53,18 +53,12 @@ function fetchBooks(searchTerm){
   .then(res => res.json())
   .then(data => {
     const books = data.docs
-    if(books.length===0){
-      displayErrorText(`No books found from your search.`)
-    } else{
-     displayBooks(books)
-    }
+    displayBooks(books)
     
   })
-  .catch(error=> {console.error('Error fetching books:', error)})
+  .catch(error=> {console.log('Error fetching books:', error)})
 }
-function displayErrorText(){
-  console.log(message)
-}
+
 
 //search form event listener
 const searchForm = document.getElementById('search-form')
