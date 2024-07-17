@@ -6,19 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionsLink = document.getElementById('suggestions-link');
   const suggestionsSection = document.getElementById('suggestions');
 
-//this is a container for the fetched books
-function displayBooks(books){
+//function to display books
+function displayBooks(books, searchTerm){
 const bookDisplay = document.getElementById('book-display');
 bookDisplay.innerHTML = '';
 
+// Creates a heading element to display search results
+const searchResultsText = document.createElement('h2');
+searchResultsText.textContent = `Search results for "${searchTerm}"`;
+bookDisplay.appendChild(searchResultsText);
+
 books.forEach(book => {
-const bookCard = document.createElement('div'); //creates a new div for each book
-bookCard.classList.add('book');//for css styling
-//content for each bookCard: img,title,author name
-//unknown rep when author name is unknown
-//@ div is appended to the div container of book collection
+const bookCard = document.createElement('div'); 
+bookCard.classList.add('displayBookContainer')
 bookCard.innerHTML = `
-  <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg" alt="${book.title}">
+  <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}">
   <div class="book-details">
     <h3>Title: ${book.title}</h3>
     <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
@@ -30,28 +32,26 @@ bookDisplay.appendChild(bookCard);
 })
 }
 
-//fetches data from API
+//fetches books from open library book search API
 function fetchBooks(searchTerm){
   fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
-  .then(res => res.json())
-  .then(data => {
-    const books = data.docs
-    displayBooks(books)
-    
-  })
-  .catch(error=> {console.log('Error fetching books:', error)})
+    .then(res => res.json())
+    .then(data => {
+      const books = data.docs
+      displayBooks(books, searchTerm)
+    })
+    .catch(error=> {console.log('Error fetching books:', error)})
 }
-
 
 //search form event listener
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 
 searchForm.addEventListener('submit', (e)=>{
-e.preventDefault()
-const searchTerm = searchInput.value.trim()
-fetchBooks(searchTerm)
-searchInput.value = ''
+  e.preventDefault()
+  const searchTerm = searchInput.value.trim()
+  fetchBooks(searchTerm)
+  searchInput.value = ''
 })
 
 //Nav links event listeners
@@ -68,9 +68,10 @@ homeLink.addEventListener('click', (event) => {
 suggestionsLink.addEventListener('click', (event) => {
   event.preventDefault();
   suggestionsSection.classList.toggle('hidden')
+  fetchSuggestions()
  });
 
-//to fetch suggested books
+//function to fetch suggested books from open library
 function fetchSuggestions(){
   fetch('https://openlibrary.org/subjects/fiction.json?random=true&limit=3')
   .then(res=> res.json())
@@ -79,8 +80,10 @@ function fetchSuggestions(){
   })
   .catch(error=>{console.log('Error:', error)})
 }
+
+//function to display suggested books
 function displaySuggestions(books){
-  const suggestionsContainer= document.getElementById('book-display')
+  const suggestionsContainer= document.getElementById('suggestions-list')
   suggestionsContainer.innerHTML=""
 
   books.forEach(book=>{
