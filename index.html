@@ -10,9 +10,9 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#home" id="home-link">Home</a></li>
+        <li><a href="home" id="home-link">Home</a></li>
         <li><a href="about" id="about-link">About</a></li>
-        <li><a href="#suggestions" id="suggestions-link">Suggested books</a></li>
+        <li><a href="suggestions" id="suggestions-link">Suggested books</a></li>
       </ul>
     </nav>
     <form id="search-form">
@@ -25,28 +25,22 @@
 
    <section id="home" class="hidden">
       <h2>Welcome to Free Read Hub</h2>
-      <p>Discover your next favorite book, rate and review your reads, and manage your personal reading list all in one place. Start exploring our collection now!</p>
-      <p>Use the search bar above to find books by title, author, or genre.</p>
+      <p class="nav-content"><em>Welcome to Free Read Hub, your gateway to literary exploration. Search for your favorite books or explore new genres with our curated suggestions. Start your reading journey today.</em></p>
    </section>
 
    <section id="about" class="hidden">
      <h2>About Free Read Hub</h2>
-     <p>Welcome to Free Read Hub, your ultimate destination for discovering
-      detailed information about books. Whether you are an avid reader or just getting
-      started, our platform allows you to search for book details, view ratings, and
-      find direct links to Open Library. 
-      Enjoy exploring our collection and happy reading!  
-     </p>  
+     <p class="nav-content"><em>Discover a world of literature with Free Read Hub! Explore an extensive collection of books using our intuitive search feature. Dive into detailed book descriptions and author insights effortlessly.</em></p>
    </section> 
 
   <section id="suggestions" class="hidden">
-    <!-- <h2>Suggested Books</h2> -->
+    <h3 id="suggestions-content">Check out our readers top suggestions</h3>
     <div id="suggestions-list"></div>
   </section>
 
   <section>
     <div id="book-display">
-      <!--  to add book items with js-->
+      <!--  will dynamically be added items from book search results-->
     </div>
   </section>  
   </main>
