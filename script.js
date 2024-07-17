@@ -88,7 +88,7 @@ function displaySuggestions(books){
 
   books.forEach(book=>{
     const suggestedBook = document.createElement('div')
-    suggestedBook.classList.add('suggestionsCard')
+    suggestedBook.classList.add('displayBookContainer')
     suggestedBook.innerHTML =`
       <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" alt="${book.title}">
       <h3>Title: ${book.title}</h3>
