@@ -30,6 +30,27 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
 }
+.nav-content{
+    font-size: 24px;
+    color: #030902;
+    line-height: 1.8;
+    text-align: center;
+    padding: 20px;
+    background-color: #a0f6a2;
+    border-radius: 10px;    
+}
+
+ @keyframes blink{
+  0%, 100% {opacity: 1;}
+  50% {opacity: 0;}
+ } 
+
+#suggestions-content{
+  color:blue;
+  font-size: 40px;
+  text-align: center;
+  animation: blink 3s linear infinite;
+}
 
 #search-input {
     padding: 0.5em;
@@ -61,10 +82,6 @@ section {
     margin-bottom: 2em;
 }
 
-h2 {
-    border-bottom: 2px solid #4CAF50;
-    padding-bottom: 0.5em;
-}
 .displayBookContainer{
    border: 1px solid #ccc; 
    border-radius: 8px;
@@ -75,15 +92,6 @@ h2 {
    width: 20em;
 }
 
-.suggestionsCard{
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    text-align: center;
-    padding: 20px;
-    margin-bottom: 8px;
-    width: 20em;
-}
 .suggestionsCard :hover{
     cursor: pointer;
 }
@@ -100,34 +108,11 @@ h2 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-#book-display {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-.book{
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-}
-.book img {
-    width: 30%;
-    height: auto;
-    border-radius: 4px;
-}
-.book-details{
-    color: rgb(106, 103, 103);
-    font-style: oblique;
-}
 
 footer {
-    background-color: #333;
+    background-color: #45a049;
     color: white;
     text-align: center;
-    padding: 1em 0;
     position: fixed;
     bottom: 0;
     width: 100%;
