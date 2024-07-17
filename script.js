@@ -72,16 +72,33 @@ suggestionsLink.addEventListener('click', (event) => {
 
 //to fetch suggested books
 function fetchSuggestions(){
-  fetch('https://openlibrary.org/subjects/popular.json?limit=3')
+  fetch('https://openlibrary.org/subjects/fiction.json?random=true&limit=3')
   .then(res=> res.json())
   .then(data => {
     displaySuggestions(data.works)
   })
   .catch(error=>{console.log('Error:', error)})
 }
+function displaySuggestions(books){
+  const suggestionsContainer= document.getElementById('book-display')
+  suggestionsContainer.innerHTML=""
 
+  books.forEach(book=>{
+    const suggestedBook = document.createElement('div')
+    suggestedBook.classList.add('suggestionsCard')
+    suggestedBook.innerHTML =`
+      <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" alt="${book.title}">
+      <h3>Title: ${book.title}</h3>
+      <p><strong>Author:</strong> ${book.authors.map(author => author.name)}</p>
+      <a href="https://openlibrary.org${book.key}" >View Details</a>
+
+      `
+    suggestionsContainer.appendChild(suggestedBook)
+  })
+
+}
 const searchTerm = searchInput.value.trim();
 fetchBooks(searchTerm);
-
+fetchSuggestions()
 });
 
