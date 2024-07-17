@@ -1,21 +1,3 @@
-//FETCH API
-// Fetch API Request
-//returned data has an object with a docs array
-// function fetchBooks (){
-// const url = 'http://localhost:3000/books';
-
-// fetch(url)
-//   .then(res => res.json())
-//   .then(data => {
-//     console.log(data);
-//      const books = data.slice(0, 10);
-//      displayBooks(books); 
-//   })
-//   .catch(error => {
-//     console.log("Error fetching books:", error);
-//   });
-// }
-
 document.addEventListener('DOMContentLoaded', () => {
   const aboutLink = document.getElementById('about-link');
   const aboutSection = document.getElementById('about');
@@ -38,8 +20,9 @@ bookCard.classList.add('book');//for css styling
 bookCard.innerHTML = `
   <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg" alt="${book.title}">
   <div class="book-details">
-    <h3>${book.title}</h3>
-    <p>by ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+    <h3>Title: ${book.title}</h3>
+    <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+    <p><strong>Subjects:</strong> ${book.subject_facet}</p>
     <a href="https://openlibrary.org${book.key}" >View Details</a>
    </div>
 `;
@@ -87,8 +70,18 @@ suggestionsLink.addEventListener('click', (event) => {
   suggestionsSection.classList.toggle('hidden')
  });
 
+//to fetch suggested books
+function fetchSuggestions(){
+  fetch('https://openlibrary.org/subjects/popular.json?limit=3')
+  .then(res=> res.json())
+  .then(data => {
+    displaySuggestions(data.works)
+  })
+  .catch(error=>{console.log('Error:', error)})
+}
+
 const searchTerm = searchInput.value.trim();
 fetchBooks(searchTerm);
-   
+
 });
 
