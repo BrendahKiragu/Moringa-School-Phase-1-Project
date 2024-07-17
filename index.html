@@ -12,11 +12,11 @@
       <ul>
         <li><a href="#home" id="home-link">Home</a></li>
         <li><a href="about" id="about-link">About</a></li>
-        <li><a href="#suggestions" id="suggestions-link">Suggestions</a></li>
+        <li><a href="#suggestions" id="suggestions-link">Suggested books</a></li>
       </ul>
     </nav>
     <form id="search-form">
-      <input type="text" id="search-input" placeholder="search book">
+      <input type="text" id="search-input" placeholder="search book (author/name)">
       <button type="submit">Search</button>
     </form>
   </header>
@@ -30,35 +30,21 @@
    </section>
 
    <section id="about" class="hidden">
-    <h2>About Free Read Hub</h2>
-    <p>Welcome to Free Read Hub, your go-to source for discovering, rating, and managing your reading list. Whether you're an avid reader or just getting started, our platform offers a wide selection of books to suit all tastes and preferences. Enjoy exploring our collection and happy reading!</p>
-  </section> 
+     <h2>About Free Read Hub</h2>
+     <p>Welcome to Free Read Hub, your ultimate destination for discovering
+      detailed information about books. Whether you are an avid reader or just getting
+      started, our platform allows you to search for book details, view ratings, and
+      find direct links to Open Library. 
+      Enjoy exploring our collection and happy reading!  
+     </p>  
+   </section> 
 
   <section id="suggestions" class="hidden">
-    <h2>Suggestions</h2>
-    <div class="book">
-      <img src="images/A grain of wheat.jpeg" alt="A grain of wheat">
-      <div class="book-details">
-      <h3>A grain of wheat</h3>
-      <p>By Ngũgĩ wa Thiong'o</p>
-     </div>
-    <div class="book">
-      <img src="images/Dust-Book-by-Yvonne.jpg" alt="Dust">
-      <div class="book-details">
-      <h3>Dust</h3>
-      <p>By Yvonne Adhiambo Owuor</p>
-    </div>
-    <div class="book">
-      <img src="images/unbowed-jpg.jpeg" alt="unbowed">
-      <div class="book-details">
-      <h3>Unbowed</h3>
-      <p>By Wangari Maathai</p>
-    </div>
-
+    <!-- <h2>Suggested Books</h2> -->
+    <div id="suggestions-list"></div>
   </section>
 
   <section>
-    <h2>Book Collection</h2>
     <div id="book-display">
       <!--  to add book items with js-->
     </div>
