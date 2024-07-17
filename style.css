@@ -65,6 +65,10 @@ h2 {
     border-bottom: 2px solid #4CAF50;
     padding-bottom: 0.5em;
 }
+.suggestionCard{
+    display: flex;
+    background-color: aquamarine;
+}
 
 #reading-list ul {
     list-style: none;
@@ -83,24 +87,17 @@ h2 {
     flex-wrap: wrap;
     gap: 1em;
 }
-
+.book{
+    display: block;
+    margin-bottom: 10px;
+    background-color: #b3f4b7;
+}
 .book img {
     width: 30%;
 }
-
-.book-item {
-    background-color: white;
-    padding: 1em;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 2em);
-    box-sizing: border-box;
-}
-
-.book-item img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 1em;
+.book-details{
+    color: rgb(106, 103, 103);
+    font-style: oblique;
 }
 
 footer {
