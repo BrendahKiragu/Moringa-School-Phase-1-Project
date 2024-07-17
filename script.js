@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionsLink = document.getElementById('suggestions-link');
   const suggestionsSection = document.getElementById('suggestions');
 
+
+//fetches books from open library book search API
+function fetchBooks(searchTerm){
+  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
+    .then(res => res.json())
+    .then(data => {
+      const books = data.docs
+      displayBooks(books, searchTerm)
+    })
+    .catch(error=> {console.log('Error fetching books:', error)})
+}
+
 //function to display books
 function displayBooks(books, searchTerm){
 const bookDisplay = document.getElementById('book-display');
@@ -25,6 +37,7 @@ bookCard.innerHTML = `
     <h3>Title: ${book.title}</h3>
     <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
     <p><strong>Subjects:</strong> ${book.subject_facet}</p>
+    <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
     <a href="https://openlibrary.org${book.key}" >View Details</a>
    </div>
 `;
@@ -32,27 +45,26 @@ bookDisplay.appendChild(bookCard);
 })
 }
 
-//fetches books from open library book search API
-function fetchBooks(searchTerm){
-  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
-    .then(res => res.json())
-    .then(data => {
-      const books = data.docs
-      displayBooks(books, searchTerm)
-    })
-    .catch(error=> {console.log('Error fetching books:', error)})
-}
-
 //search form event listener
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
-
 searchForm.addEventListener('submit', (e)=>{
   e.preventDefault()
   const searchTerm = searchInput.value.trim()
   fetchBooks(searchTerm)
   searchInput.value = ''
 })
+
+// searches for books that match what is typed on search box
+searchInput.addEventListener('keyup', (e) => {
+  const searchTerm = e.target.value.trim();
+  if (searchTerm !== '') {
+    fetchBooks(searchTerm);
+  } else {
+    const bookDisplay = document.getElementById('book-display');
+    bookDisplay.innerHTML = '';
+  }
+});
 
 //Nav links event listeners
 aboutLink.addEventListener('click', (event) => {
@@ -73,13 +85,14 @@ suggestionsLink.addEventListener('click', (event) => {
 
 //function to fetch suggested books from open library
 function fetchSuggestions(){
-  fetch('https://openlibrary.org/subjects/fiction.json?random=true&limit=3')
+  fetch('https://openlibrary.org/subjects/fiction.json?limit=3')
   .then(res=> res.json())
   .then(data => {
     displaySuggestions(data.works)
   })
   .catch(error=>{console.log('Error:', error)})
 }
+
 
 //function to display suggested books
 function displaySuggestions(books){
@@ -98,8 +111,8 @@ function displaySuggestions(books){
       `
     suggestionsContainer.appendChild(suggestedBook)
   })
-
 }
+
 const searchTerm = searchInput.value.trim();
 fetchBooks(searchTerm);
 fetchSuggestions()
