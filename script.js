@@ -15,13 +15,29 @@ function fetchBooks(searchTerm){
       const books = data.docs
       displayBooks(books, searchTerm)
     })
-    .catch(error=> {console.log('Error fetching books:', error)})
+    .catch(error=> {console.log('Error fetching books:', error)
+    displayError('An error occurred while fetching books. Please try again later.');
+    })
+}
+
+  // Function to display error messages
+function displayError(message) {
+    errorContainer = document.createElement('div');
+    errorContainer.id = 'error-container';
+    errorContainer.classList.add('error');
+    errorContainer.textContent = message;
 }
 
 //function to display books
 function displayBooks(books, searchTerm){
 const bookDisplay = document.getElementById('book-display');
 bookDisplay.innerHTML = '';
+
+// Clear previous error messages
+const errorContainer = document.getElementById('error-container');
+if (errorContainer) {
+  errorContainer.remove();
+}
 
 // Creates a heading element to display search results
 const searchResultsText = document.createElement('h2');
@@ -36,7 +52,7 @@ bookCard.innerHTML = `
   <div class="book-details">
     <h3>Title: ${book.title}</h3>
     <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
-    <p><strong>Subjects:</strong> ${book.subject_facet}</p>
+    <p><strong>Subjects:</strong> ${book.subject_facet ? book.subject_facet.join(', ') : 'Unknown'}</p>
     <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
     <a href="https://openlibrary.org${book.key}" >View Details</a>
    </div>
