@@ -96,6 +96,23 @@ main {
 section {
     margin-bottom: 2em;
 }
+#loading-indicator{
+    color:#45a049;
+    font-size: 40px;
+    text-align: center;
+}
+.dot{
+    animation: blink 1.5s infinite;
+}
+.dot:nth-child(1){
+    animation-delay: 1s;
+}
+.dot:nth-child(2){
+    animation-delay: 2s;
+}
+.dot:nth-child(3){
+    animation-delay: 3s;
+}
 
 .displayBookContainer{
    border: 1px solid #ccc; 
