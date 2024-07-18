@@ -1,5 +1,5 @@
 # Project Name: Free Read Hub
-Free Read Hub is a Single Page Application (SPA) that allows users to access a wide range of books, leave ratings, and add books to their reading list. This project aims to provide a user-friendly interface for book enthusiasts to explore and manage their reading preferences.
+Free Read Hub is a Single Page Application (SPA) that allows users to access a wide range of books from open library search API. This project aims to provide a user-friendly interface for book enthusiasts to explore authors and their works.
 
 # Table of Contents
 Overview
@@ -28,7 +28,7 @@ Description: Displays a list of suggested books fetched from the Open Library AP
 # App navigation
 
 ## Accessing the Search Interface:
-Navigate to the search form on the main page of the "Free Read Hub" website. Typically, this form includes an input field where users can enter their search queries.
+Navigate to the search form on the main page of the "Free Read Hub" website. There is an input field with a placeholder text "search book(author/name), and to the right is a submit button 'search'.
 
 ## Entering Search Queries:
 Type the title, author's name, or subject of the book you are looking for into the search input field. The search may dynamically display suggestions or start fetching results based on what you type.
@@ -46,4 +46,4 @@ After submitting the search query, the Free Read Hub platform displays the searc
 -Link to view more details on the Open Library  website
 
 ## Error Handling:
-If there are any issues during the search process (such as network errors or API limitations), the platform displays user-friendly error messages to notify you and suggest trying again later.
+If there are any issues during the search process (such as network errors or API limitations), the platform displays user-friendly error message to notify you and suggest trying again later.
