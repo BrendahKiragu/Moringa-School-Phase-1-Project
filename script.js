@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
  function hideLoadingIndicator() {
     loadingIndicator.classList.add('hidden');
   }
+  const burgerMenu = document.querySelector('.burger-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  burgerMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
 
 //fetches books from open library book search API
 function fetchBooks(searchTerm){
