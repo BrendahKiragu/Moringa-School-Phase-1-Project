@@ -12,7 +12,12 @@ header {
     padding: 1em 0;
     text-align: center;
 }
-
+#home{
+    background-image: url(images/library\ books.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
 nav ul {
     list-style: none;
     padding: 0;
@@ -32,11 +37,10 @@ nav ul li a {
 }
 .nav-content{
     font-size: 24px;
-    color: #030902;
+    color: white;
     line-height: 1.8;
     text-align: center;
     padding: 20px;
-    background-color: #a0f6a2;
     border-radius: 10px;    
 }
 
