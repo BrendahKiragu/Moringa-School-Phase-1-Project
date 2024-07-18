@@ -5,10 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeSection = document.getElementById('home');
   const suggestionsLink = document.getElementById('suggestions-link');
   const suggestionsSection = document.getElementById('suggestions');
+  const loadingIndicator = document.getElementById('loading-indicator');
 
+ function showLoadingIndicator() {
+    loadingIndicator.classList.remove('hidden');
+  }
+ function hideLoadingIndicator() {
+    loadingIndicator.classList.add('hidden');
+  }
 
 //fetches books from open library book search API
 function fetchBooks(searchTerm){
+  showLoadingIndicator();
+
   fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
     .then(res => res.json())
     .then(data => {
@@ -18,6 +27,9 @@ function fetchBooks(searchTerm){
     .catch(error=> {console.log('Error fetching books:', error)
     displayError('An error occurred while fetching books. Please try again later.');
     })
+   .finally(() => {
+        hideLoadingIndicator();
+    }); 
 }
 
   // Function to display error messages
