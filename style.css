@@ -172,12 +172,12 @@ section {
 
 .displayBookContainer{
    border: 1px solid #ccc; 
-   border-radius: 8px;
-   background-color: beige;
-   text-align: justify;
-   padding: 20px;
+   border-radius: 12px;
+   background-color: rgb(175, 175, 171);
+   text-align: center;
+   padding: 30px;
    margin-bottom: 8px;
-   width: 20em;
+   width: 50%;
 }
 
 .suggestionsCard :hover{
