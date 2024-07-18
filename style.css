@@ -12,12 +12,7 @@ header {
     padding: 1em 0;
     text-align: center;
 }
-#home{
-    background-image: url(images/library\ books.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -36,13 +31,29 @@ nav ul li a {
     font-weight: bold;
 }
 .nav-content{
-    font-size: 24px;
-    color: white;
-    line-height: 1.8;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;    
+  font-size: 24px; 
+  line-height: 1.8;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 10px;
+  border-radius: 5px;  
+} 
+#home{
+    background-image: url(images/library\ books.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: #f9f9f9;
 }
+
+#about{
+    background-image: url(images/lib.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: #f9f9f9;
+    padding: 20px;
+  }
 
  @keyframes blink{
   0%, 100% {opacity: 1;}
@@ -111,7 +122,6 @@ section {
     margin-bottom: 1em;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-
 
 footer {
     background-color: #45a049;
