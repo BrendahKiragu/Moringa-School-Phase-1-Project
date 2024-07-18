@@ -113,7 +113,7 @@ suggestionsLink.addEventListener('click', (event) => {
 
 //function to fetch suggested books from open library
 function fetchSuggestions(){
-  fetch('https://openlibrary.org/subjects/fiction.json?limit=3')
+  fetch('https://openlibrary.org/subjects/fiction.json?limit=5')
   .then(res=> res.json())
   .then(data => {
     displaySuggestions(data.works)
