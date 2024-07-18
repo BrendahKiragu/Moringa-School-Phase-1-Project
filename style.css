@@ -2,22 +2,24 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(238, 230, 216);
-    color: #333;
+    color: #f9f9f9;
+    color: #333333;
 }
 
 header {
-    background-color: #4CAF50;
-    color: white;
+    background-color: lightgray;
     padding: 1em 0;
     text-align: center;
 }
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #page-title{
-    color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-right: auto;    
+    margin: 5px;   
 }
 
 nav ul {
@@ -25,26 +27,62 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 2em;
+    margin: 0;
 }
 
 nav ul li a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: bold;
 }
+a:hover{
+    color: blue;
+}
+
+#search-form {
+    margin-top: 10px;
+    text-align: center;
+} 
+
+#search-input {
+    padding: 0.5em;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#search-form button {
+    padding: 0.5em;
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+#search-form button:hover {
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.hidden{
+    display: none;
+}
+
 .nav-content{
   font-size: 24px; 
-  line-height: 1.8;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); 
-  padding: 10px;
-  border-radius: 5px;  
 } 
+
 #home{
     background-image: url(images/library\ books.jpg);
     background-size: cover;
@@ -54,11 +92,11 @@ nav ul li a {
 }
 
 #about{
-    background-image: url(images/lib.jpg);
+    background-image: url(images/read.jpg);
     background-size: cover;
     background-position: center;
     height: 100vh;
-    color: #f9f9f9;
+    color: whitesmoke;
     padding: 20px;
   }
 
@@ -74,38 +112,13 @@ nav ul li a {
   animation: blink 3s linear infinite;
 }
 
-#search-input {
-    padding: 0.5em;
-    width: 200px;
-    border-radius: 5px;
-}
-
-#search-form button {
-    padding: 0.5em;
-    background-color: #ffffff;
-    color: #4CAF50;
-    border: none;
-    cursor: pointer;
-}
-
-#search-form button:hover {
-    background-color: #45a049;
-    color: white;
-}
-
-main {
-    padding: 2em;
-}
-.hidden{
-    display: none;
-}
-
 section {
     margin-bottom: 2em;
 }
+
 #loading-indicator{
     color:#45a049;
-    font-size: 40px;
+    font-size: 24px;
     text-align: center;
 }
 .dot{
@@ -124,8 +137,8 @@ section {
 .displayBookContainer{
    border: 1px solid #ccc; 
    border-radius: 8px;
-   background-color: #f9f9f9;
-   text-align: center;
+   background-color: beige;
+   text-align: justify;
    padding: 20px;
    margin-bottom: 8px;
    width: 20em;
@@ -148,8 +161,7 @@ section {
 }
 
 footer {
-    background-color: #45a049;
-    color: white;
+    background-color: lightgray;
     text-align: center;
     position: fixed;
     bottom: 0;
