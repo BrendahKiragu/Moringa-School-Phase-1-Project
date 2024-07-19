@@ -186,9 +186,9 @@ section {
 .displayBookContainer{
    border: 1px solid #ccc; 
    border-radius: 12px;
-   display: flex;
-   background-color: rgb(175, 175, 171);
+   display: block;
    text-align: center;
+   background-color: rgb(175, 175, 171);
    padding: 30px;
    margin-bottom: 8px;
 }
