@@ -27,7 +27,7 @@ function fetchBooks(searchTerm){
   fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
     .then(res => res.json())
     .then(data => {
-      const books = data.docs.slice(0, 5)
+      const books = data.docs
       displayBooks(books, searchTerm)
     })
     .catch(error=> {console.log('Error fetching books:', error)
