@@ -89,17 +89,6 @@ searchForm.addEventListener('submit', (e)=>{
   searchInput.value = ''
 })
 
-// searches for books that match what is typed on search box
-searchInput.addEventListener('keyup', (e) => {
-  const searchTerm = e.target.value.trim();
-  if (searchTerm !== '') {
-    fetchBooks(searchTerm);
-  } else {
-    const bookDisplay = document.getElementById('book-display');
-    bookDisplay.innerHTML = '';
-  }
-});
-
 //Nav links event listeners
 aboutLink.addEventListener('click', (event) => {
   event.preventDefault();
