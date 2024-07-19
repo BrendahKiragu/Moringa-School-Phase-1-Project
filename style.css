@@ -4,19 +4,16 @@ body {
     padding: 0;
     color: #f9f9f9;
     color: #333333;
+        background-image: url(images/library\ books.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 
 header {
-    background-color: lightgray;
+    background-color: rgb(44, 161, 44);
     padding: 1em 0;
     text-align: center;
-}
-
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
 }
 
 #page-title{
@@ -25,7 +22,7 @@ nav{
     flex: 100%;   
     border-radius: 10px;
     background: linear-gradient(hsl(210, 61%, 86%), hsl(216, 74%, 62%));
-    /* font-family: cursive; */
+    font-family: cursive;
 }
 
 #nav-links{
@@ -57,13 +54,13 @@ a:hover{
 
 @media (max-width: 768px){
    .burger-menu{
-        display: block;
+        display: flex;
+        flex-direction: row;
         color: black;
     } 
 
     #nav-links{
         display: none;
-        flex-direction: column;
         position: absolute;
         top: 50px;
         left: 20px;
@@ -187,17 +184,20 @@ section {
 #reading-list ul {
     list-style: none;
     padding: 0;
+    display: flex;
 }
 
 #reading-list ul li {
     background-color: white;
+    display: flex;
+    flex-direction: row;
     padding: 1em;
     margin-bottom: 1em;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    background-color: lightgray;
+    background-color: rgb(44, 161, 44);
+    color: white;
     text-align: center;
     position: fixed;
     bottom: 0;
