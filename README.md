@@ -1,5 +1,5 @@
-# Project Name: Free Read Hub
-Free Read Hub is a Single Page Application (SPA) that allows users to access a wide range of books from open library search API. This project aims to provide a user-friendly interface for book enthusiasts to explore authors and their works.
+# Project Name: Book Search Hub
+Book Search Hub is a Single Page Application (SPA) that allows users to access a wide range of books from open library search API. This project aims to provide a user-friendly interface for book enthusiasts to explore authors and their works.
 
 # Table of Contents
 Overview
@@ -13,7 +13,7 @@ App navigation
   
 
 # Overview
-The "Free Read Hub" is a comprehensive platform where users can access a wide range of books for free. It leverages Open Library API to fetch book data dynamically, allowing users to search for books by title, author, or subject. 
+The "Book Search Hub" is a comprehensive platform where users can access a wide range of books for free. It leverages Open Library API to fetch book data dynamically, allowing users to search for books by title, author, or subject. 
 
 # Features
 
@@ -28,7 +28,7 @@ Description: Displays a list of suggested books fetched from the Open Library AP
 # App navigation
 
 ## Accessing the Search Interface:
-Navigate to the search form on the main page of the "Free Read Hub" website. There is an input field with a placeholder text "search book(author/name), and to the right is a submit button 'search'.
+Navigate to the search form on the main page of the "Book Search Hub" website. There is an input field with a placeholder text "search book(author/name), and to the right is a submit button 'search'.
 
 ## Entering Search Queries:
 Type the title, author's name, or subject of the book you are looking for into the search input field. The search may dynamically display suggestions or start fetching results based on what you type.
@@ -37,7 +37,7 @@ Type the title, author's name, or subject of the book you are looking for into t
 Once you've entered your search term, you can either press Enter or click on the search button to submit your query. This action triggers the fetching of book data from the Open Library API.
 
 ## Viewing Search Results:
-After submitting the search query, the Free Read Hub platform displays the search results in the designated book display area. Each result typically includes:
+After submitting the search query, the Book Search Hub platform displays the search results in the designated book display area. Each result typically includes:
 -Book cover image
 -Title
 -Author(s)
