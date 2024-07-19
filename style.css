@@ -4,7 +4,7 @@ body {
     padding: 0;
     color: #f9f9f9;
     color: #333333;
-        background-image: url(images/library\ books.jpg);
+    background-image: url(images/library\ books.jpg);
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -24,16 +24,21 @@ header {
     background: linear-gradient(hsl(210, 61%, 86%), hsl(216, 74%, 62%));
     font-family: cursive;
 }
+nav{
+    display: flex;
+    justify-content: center;
+}
 
 #nav-links{
     list-style: none;
+    display: flex;
     padding: 0;
     margin: 0;
-    margin-left: auto;
 }
 
 #nav-links li {
-    margin: 10px;
+    margin: 20px;
+    font-size: 16px;
 }
 
 #nav a {
@@ -63,13 +68,12 @@ a:hover{
         display: none;
         position: absolute;
         top: 50px;
-        left: 20px;
-        border-radius: 5px;
+        right: 10px;
         padding: 10px;
     }
 
      #nav-links li {
-        margin: 5px;
+        margin: 7px;
     }
 
     #nav-links.show {
@@ -167,32 +171,30 @@ section {
     animation-delay: 3s;
 }
 
+#book-display{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    list-style: none;
+    border: 1px solid black;
+}
+
 .displayBookContainer{
    border: 1px solid #ccc; 
    border-radius: 12px;
+   display: flex;
    background-color: rgb(175, 175, 171);
    text-align: center;
    padding: 30px;
    margin-bottom: 8px;
-   width: 50%;
 }
 
 .suggestionsCard :hover{
     cursor: pointer;
-}
-
-#reading-list ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-}
-
-#reading-list ul li {
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    padding: 1em;
-    margin-bottom: 1em;
 }
 
 footer {
