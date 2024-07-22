@@ -58,8 +58,8 @@ if (errorContainer) {
 }
 
 // Creates a heading element to display search results
-const searchResultsText = document.createElement('h2');
-searchResultsText.textContent = `Search results for "${searchTerm}"`;
+const searchResultsText = document.createElement('p');
+searchResultsText.textContent = `Showing Search results for " ${searchTerm} "`;
 bookDisplay.appendChild(searchResultsText);
 
 books.forEach(book => {
