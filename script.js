@@ -101,11 +101,21 @@ searchForm.addEventListener('submit', (e)=>{
 
 //hide a section when another section is clicked
 function toggleSections(sectionToShow, sectionsToHide){
+  if (sectionToShow) {
+    sectionToShow.classList.toggle('hidden');
+  } else {
   Object.values(sectionsToHide).forEach(section =>{
     section.classList.add('hidden')
   })
   sectionToShow.classList.remove('hidden')
+  }
 }
+
+[aboutSection, homeSection, suggestionsSection].forEach(section => {
+  section.addEventListener('click', () => {
+    toggleSections(section);
+  });
+});
 
 //Nav links event listeners
 aboutLink.addEventListener('click', (event) => {
@@ -121,7 +131,7 @@ homeLink.addEventListener('click', (event) => {
 suggestionsLink.addEventListener('click', (event) => {
   event.preventDefault();
   toggleSections(suggestionsSection, {homeSection, aboutSection});
-  fetchSuggestions();
+  // fetchSuggestions();
  });
 
 //function to fetch suggested books from open library
@@ -157,5 +167,5 @@ function initializeApp(){
   fetchBooks(initialSearchTerm);
   fetchSuggestions()
 }
-  initializeApp()
+  initializeApp();
 })
