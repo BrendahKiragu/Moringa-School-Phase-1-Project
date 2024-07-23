@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
  function showLoadingIndicator() {
     loadingIndicator.classList.remove('hidden');
   }
+
  function hideLoadingIndicator() {
     loadingIndicator.classList.add('hidden');
   }
+
   const burgerMenu = document.querySelector('.burger-menu');
   const navLinks = document.getElementById('nav-links');
 
@@ -40,10 +42,11 @@ function fetchBooks(searchTerm){
 
   // Function to display error messages
 function displayError(message) {
-    errorContainer = document.createElement('div');
+    const errorContainer = document.createElement('div');
     errorContainer.id = 'error-container';
     errorContainer.classList.add('error');
     errorContainer.textContent = message;
+    document.appendChild(errorContainer);
 }
 
 //function to display books
@@ -130,14 +133,13 @@ function displaySuggestions(books){
       <h3>Title: ${book.title}</h3>
       <p><strong>Author:</strong> ${book.authors.map(author => author.name)}</p>
       <a href="https://openlibrary.org${book.key}" >View Details</a>
-
       `
     suggestionsContainer.appendChild(suggestedBook)
   })
 }
 
-const searchTerm = searchInput.value.trim();
-fetchBooks(searchTerm);
+const initialSearchTerm = searchInput.value.trim();
+fetchBooks(initialSearchTerm);
 fetchSuggestions()
 });
 
