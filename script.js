@@ -92,20 +92,28 @@ searchForm.addEventListener('submit', (e)=>{
   searchInput.value = ''
 })
 
+//hide a section when another section is clicked
+function toggleSections(sectionToShow, sectionsToHide){
+  Object.values(sectionsToHide).forEach(section =>{
+    section.classList.add('hidden')
+  })
+  sectionToShow.classList.remove('hidden')
+}
+
 //Nav links event listeners
 aboutLink.addEventListener('click', (event) => {
   event.preventDefault();
-  aboutSection.classList.toggle('hidden');
+  toggleSections(aboutSection, {homeSection, suggestionsSection});
 });
 
 homeLink.addEventListener('click', (event) => {
   event.preventDefault();
-  homeSection.classList.toggle('hidden');
+  toggleSections(homeSection, {aboutSection, suggestionsSection});
 });
 
 suggestionsLink.addEventListener('click', (event) => {
   event.preventDefault();
-  suggestionsSection.classList.toggle('hidden')
+  toggleSections(suggestionsSection, {homeSection, aboutSection});
   fetchSuggestions()
  });
 
