@@ -46,7 +46,7 @@ function displayError(message) {
     errorContainer.id = 'error-container';
     errorContainer.classList.add('error');
     errorContainer.textContent = message;
-    document.appendChild(errorContainer);
+    document.getElementById('book-display').appendChild(errorContainer);
 }
 
 //function to display books
@@ -60,26 +60,33 @@ if (errorContainer) {
   errorContainer.remove();
 }
 
+if(books.length === 0 && !searchTerm){
 // Creates a heading element to display search results
-const searchResultsText = document.createElement('p');
-searchResultsText.textContent = `Showing Search results for " ${searchTerm} "`;
-bookDisplay.appendChild(searchResultsText);
+  const searchResultsText = document.createElement('p');
+  searchResultsText.textContent = `Showing Search results for " ${searchTerm} "`;
+  bookDisplay.appendChild(searchResultsText);
+} else if (books.length === 0){
+    const errorMessage = document.createElement('p')
+    errorMessage.textContent = `Could not find any books for "${searchTerm}"`
+    bookDisplay.appendChild(errorMessage)
+} else {
 
 books.forEach(book => {
 const bookCard = document.createElement('div'); 
 bookCard.classList.add('displayBookContainer')
 bookCard.innerHTML = `
-  <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}">
-  <div class="book-details">
-    <h3>Title: ${book.title}</h3>
-    <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
-    <p><strong>Subjects:</strong> ${book.subject_facet ? book.subject_facet.join(', ') : 'Unknown'}</p>
-    <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
-    <a href="https://openlibrary.org${book.key}" >View Details</a>
-   </div>
-`;
-bookDisplay.appendChild(bookCard);
-})
+    <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}">
+    <div class="book-details">
+      <h3>Title: ${book.title}</h3>
+      <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+      <p><strong>Subjects:</strong> ${book.subject_facet ? book.subject_facet.join(', ') : 'Unknown'}</p>
+      <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
+      <a href="https://openlibrary.org${book.key}" >View Details</a>
+    </div>
+    `;
+    bookDisplay.appendChild(bookCard);
+   })
+  }
 }
 
 //search form event listener
@@ -114,7 +121,7 @@ homeLink.addEventListener('click', (event) => {
 suggestionsLink.addEventListener('click', (event) => {
   event.preventDefault();
   toggleSections(suggestionsSection, {homeSection, aboutSection});
-  fetchSuggestions()
+  fetchSuggestions();
  });
 
 //function to fetch suggested books from open library
@@ -145,9 +152,10 @@ function displaySuggestions(books){
     suggestionsContainer.appendChild(suggestedBook)
   })
 }
-
-const initialSearchTerm = searchInput.value.trim();
-fetchBooks(initialSearchTerm);
-fetchSuggestions()
-});
-
+function initializeApp(){
+  const initialSearchTerm = searchInput.value.trim();
+  fetchBooks(initialSearchTerm);
+  fetchSuggestions()
+}
+  initializeApp()
+})
