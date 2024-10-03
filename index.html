@@ -1,72 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Search Hub</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
       <h1 id="page-title">Book Search Hub</h1>
-      <nav>  
-      <div class="burger-menu">&#x2630;</div>  
+      <nav>
+        <div class="burger-menu">&#x2630;</div>
         <ul id="nav-links">
-        <li><a href="home" id="home-link">Home</a></li>
-        <li><a href="about" id="about-link">About</a></li>
-        <li><a href="suggestions" id="suggestions-link">Suggested books</a></li>
-      </ul>
-    </nav>
-      
+          <li><a class="navlink" href="#home" id="home-link">Home</a></li>
+          <li><a class="navlink" href="#about" id="about-link">About</a></li>
+          <li>
+            <a class="navlink" href="#suggestions" id="suggestions-link"
+              >Suggested Books</a
+            >
+          </li>
+        </ul>
+      </nav>
+
       <form id="search-form">
-      <input type="text" id="search-input" placeholder="search book (author/name)...">
-      <button type="submit">Search</button>
-    </form>
-   
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for a book (author/name)..."
+        />
+        <button type="submit">Search</button>
+      </form>
+      <section>
+        <div id="loading-indicator" class="hidden">
+          Please wait while I search for your book<span class="dot">.</span
+          ><span class="dot">.</span><span class="dot">.</span>
+        </div>
+        <button id="go-back-button" class="hidden">Go to Homepage</button>
 
-  </header>
+        <div id="book-display">
+          <!-- Dynamically added items from book search results -->
+        </div>
+      </section>
+    </header>
 
-  <main>
+    <main>
+      <section id="home">
+        <h2>Welcome to Book Search Hub</h2>
+        <p><em>Find your next great read with ease.</em></p>
+        <img
+          src="https://images.unsplash.com/photo-1682333104862-c5358b05d15d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="shelf of books"
+        />
+        <hr />
+        <p>
+          <em
+            >Use the search bar above to explore books by author, title, or
+            genre!</em
+          >
+          <a href="#search-input">Search</a>
+        </p>
 
-   <section id="home" class="hidden" >
-      <h2 class="nav-content">Welcome to Book Search Hub</h2>
-      <p class="nav-content"><em>Let's help you find your next great read.<br>
-      <p class="nav-content"><em>Use the search bar above to find books by author,
-        subject or book's name and hit 'search'.</em></p>
-      <p class="nav-content"><em>Discover the top searches from our readers on the suggested books</em></p>
-   </section>
+        <img
+          src="https://plus.unsplash.com/premium_photo-1703701580104-43fb3013075a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="a woman searching for a book on a book shelf"
+        />
+        <hr />
+        <p>
+          <em>Read more <a href="#about-link">about</a> us</em>
+        </p>
 
-   <section id="about" class="hidden">
-     <h2 class="nav-content">About Free Read Hub</h2>
-     <p class="nav-content"><em>
-      make your book search easy peasy with Free Read Hub's: <br><br>
-      <u>Intuitive Search:</u> Quickly find books by title, author or subject.<br><br>
-      <u>Detailed Descriptions:</u> Access comprehensive book summaries and key details.<br><br>
-      <u>Author Insights:</u> Learn about the authors and their other works.<br><br>
-      <u>User-Friendly Navigation:</u> Effortlessly browse and discover books.<br><br>
-      Explore, discover, and immerse yourself in the world of books with Free Read Hub.
-     </em></p>
-   </section> 
+        <img
+          src="https://images.unsplash.com/photo-1607473129014-0afb7ed09c3a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="books on a chair"
+        />
+        <hr />
+      </section>
 
-  <section id="suggestions" class="hidden">
-    <h3 id="suggestions-content">Discover the top searches from our avid readers</h3>
-    <div id="suggestions-list"></div>
-  </section>
+      <section class="hidden" id="about">
+        <h2>About Book Search Hub</h2>
+        <p><em>Experience the joy of reading with our platform:</em></p>
+        <ul>
+          <li>
+            <u>Efficient Search:</u> Quickly find books by title, author, or
+            genre.
+          </li>
+          <li>
+            <u>In-depth Information:</u> Read comprehensive summaries and
+            reviews.
+          </li>
+          <li>
+            <u>Author Spotlights:</u> Discover more about your favorite authors.
+          </li>
+          <li>
+            <u>Easy Navigation:</u> Browse through various categories
+            effortlessly.
+          </li>
+        </ul>
+        <p>
+          <em
+            >Dive into the world of books and broaden your literary
+            horizons!</em
+          >
+        </p>
+      </section>
 
-  <section>
-    <div id="loading-indicator" class="hidden">
-      Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-    </div>
-    <div id="book-display">
-      <!--  will dynamically be added items from book search results-->
-    </div>
-  </section>  
-  </main>
+      <section class="hidden" id="suggestions">
+        <h3>Top Searches from Our Readers</h3>
+        <div id="suggestions-list">
+          <ul>
+            <li>The Midnight Library by Matt Haig</li>
+            <li>Where the Crawdads Sing by Delia Owens</li>
+            <li>The Vanishing Half by Brit Bennett</li>
+            <li>Educated by Tara Westover</li>
+          </ul>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-     <p>&copy; 2024 Book Search Hub. All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>&copy; 2024 Book Search Hub. All rights reserved.</p>
+    </footer>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

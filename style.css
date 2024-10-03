@@ -38,14 +38,14 @@ nav {
     font-size: 16px;
 }
 
-#nav a {
+.navlink{
     color: #FFFFFF; /* White text for better contrast */
     text-decoration: none;
     font-weight: bold;
 }
 
 a:hover {
-    color: #6C757D; /* Gray on hover for a subtle effect */
+    color: blue; /* Gray on hover for a subtle effect */
 }
 
 .burger-menu {
@@ -54,7 +54,7 @@ a:hover {
     font-size: 1.5em;
 }
 
-@media (max-width: 768px) {
+@media (max-width > 768px) {
     .burger-menu {
         display: flex;
         flex-direction: row;
@@ -92,17 +92,18 @@ a:hover {
     border-radius: 5px;
 }
 
-#search-form button {
+button {
     padding: 0.5em;
-    background-color: #007BFF; /* Blue button */
-    color: white; /* White text for contrast */
+    margin: 10px;
+    background-color: rgb(178, 160, 160); /* Blue button */
+    color: black; /* White text for contrast */
     border: none;
     border-radius: 5px; /* Rounded corners */
     cursor: pointer;
 }
 
-#search-form button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+button:hover {
+    background-color: #e3e6e9; /* Darker blue on hover */
 }
 
 main {
@@ -136,12 +137,12 @@ main {
     animation: blink 3s linear infinite;
 }
 
-section {
-    margin-bottom: 2em;
+img{
+    margin-bottom: 50px;
 }
 
 #loading-indicator {
-    color: #45a049; /* Keep the same loading color */
+    color: white; 
     font-size: 24px;
     text-align: center;
 }
@@ -189,8 +190,8 @@ section {
 
 .displayBookContainer:hover {
     transform: scale(1.05); /* Enlarge */
-    box-shadow: 0 4px 15px rgb(105, 105, 222); /* Shadow */
-    background-color: hsl(216, 74%, 62%); /* Change background color */
+    box-shadow: 0 4px 15px blue; /* Shadow */
+    background-color:rgb(178, 160, 160); /* Change background color */
 }
 
 
