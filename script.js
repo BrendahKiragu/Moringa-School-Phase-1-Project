@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const suggestionsLink = document.getElementById('suggestions-link');
   const suggestionsSection = document.getElementById('suggestions');
   const loadingIndicator = document.getElementById('loading-indicator');
+  const searchForm = document.getElementById('search-form');
+  const searchInput = document.getElementById('search-input');
+  const bookDisplay = document.getElementById('book-display');
 
- function showLoadingIndicator() {
+  function showLoadingIndicator() {
     loadingIndicator.classList.remove('hidden');
   }
 
- function hideLoadingIndicator() {
+  function hideLoadingIndicator() {
     loadingIndicator.classList.add('hidden');
   }
 
@@ -22,150 +25,110 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('show');
   });
 
-//fetches books from open library book search API
-function fetchBooks(searchTerm){
-  showLoadingIndicator();
+  function fetchBooks(searchTerm) {
+    showLoadingIndicator();
 
-  fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`) 
-    .then(res => res.json())
-    .then(data => {
-      const books = data.docs
-      displayBooks(books, searchTerm)
-    })
-    .catch(error=> {console.log('Error fetching books:', error)
-    displayError('An error occurred while fetching books. Please try again later.');
-    })
-   .finally(() => {
+    fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`)
+      .then(res => res.json())
+      .then(data => {
+        const books = data.docs;
+        displayBooks(books, searchTerm);
+      })
+      .catch(error => {
+        console.log('Error fetching books:', error);
+        displayError('An error occurred while fetching books. Please try again later.');
+      })
+      .finally(() => {
         hideLoadingIndicator();
-    }); 
-}
+      });
+  }
 
-  // Function to display error messages
-function displayError(message) {
+  function displayError(message) {
     const errorContainer = document.createElement('div');
     errorContainer.id = 'error-container';
     errorContainer.classList.add('error');
     errorContainer.textContent = message;
-    document.getElementById('book-display').appendChild(errorContainer);
-}
 
-//function to display books
-function displayBooks(books, searchTerm){
-const bookDisplay = document.getElementById('book-display');
-bookDisplay.innerHTML = '';
+    const retryButton = document.createElement('button');
+    retryButton.textContent = 'Retry';
+    retryButton.addEventListener('click', () => fetchBooks(searchInput.value.trim()));
 
-// Clear previous error messages
-const errorContainer = document.getElementById('error-container');
-if (errorContainer) {
-  errorContainer.remove();
-}
-
-if(books.length === 0 && !searchTerm){
-// Creates a heading element to display search results
-  const searchResultsText = document.createElement('p');
-  searchResultsText.textContent = `Showing Search results for " ${searchTerm} "`;
-  bookDisplay.appendChild(searchResultsText);
-} else if (books.length === 0){
-    const errorMessage = document.createElement('p')
-    errorMessage.textContent = `Could not find any books for "${searchTerm}"`
-    bookDisplay.appendChild(errorMessage)
-} else {
-
-books.forEach(book => {
-const bookCard = document.createElement('div'); 
-bookCard.classList.add('displayBookContainer')
-bookCard.innerHTML = `
-    <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}">
-    <div class="book-details">
-      <h3>Title: ${book.title}</h3>
-      <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
-      <p><strong>Subjects:</strong> ${book.subject_facet ? book.subject_facet.join(', ') : 'Unknown'}</p>
-      <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
-      <a href="https://openlibrary.org${book.key}" >View Details</a>
-    </div>
-    `;
-    bookDisplay.appendChild(bookCard);
-   })
+    errorContainer.appendChild(retryButton);
+    bookDisplay.appendChild(errorContainer);
   }
-}
 
-//search form event listener
-const searchForm = document.getElementById('search-form')
-const searchInput = document.getElementById('search-input')
-searchForm.addEventListener('submit', (e)=>{
-  e.preventDefault()
-  const searchTerm = searchInput.value.trim()
-  fetchBooks(searchTerm)
-  searchInput.value = ''
-})
+  function displayBooks(books, searchTerm) {
+    bookDisplay.innerHTML = '';
 
-//hide a section when another section is clicked
-function toggleSections(sectionToShow, sectionsToHide){
-  if (sectionToShow) {
-    sectionToShow.classList.toggle('hidden');
-  } else {
-  Object.values(sectionsToHide).forEach(section =>{
-    section.classList.add('hidden')
-  })
-  sectionToShow.classList.remove('hidden')
+    const errorContainer = document.getElementById('error-container');
+    if (errorContainer) {
+      errorContainer.remove();
+    }
+
+    let content = '';
+
+    if (books.length === 0 && searchTerm) {
+      content = `<p>Could not find any books for "${searchTerm}"</p>`;
+    } else if (books.length > 0) {
+      books.forEach(book => {
+        content += `
+          <div class="displayBookContainer">
+            <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" alt="${book.title}">
+            <div class="book-details">
+              <h3>Title: ${book.title}</h3>
+              <p><strong>Author:</strong> ${book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+              <p><strong>Subjects:</strong> ${book.subject_facet ? book.subject_facet.slice(0, 3).join(', ') : 'Unknown'}</p>
+              <p><strong>Number of Pages:</strong> ${book.number_of_pages_median ? book.number_of_pages_median : 'Unknown'}</p>
+              <a href="https://openlibrary.org${book.key}">View Details</a>
+            </div>
+          </div>`;
+      });
+    }
+
+    bookDisplay.innerHTML = content;
+
+    // Hide the currently active section and show book display
+    hideActiveSection();
+    bookDisplay.classList.remove('hidden');
   }
-}
 
-[aboutSection, homeSection, suggestionsSection].forEach(section => {
-  section.addEventListener('click', () => {
-    toggleSections(section);
+  function hideActiveSection() {
+    [aboutSection, homeSection, suggestionsSection].forEach(section => {
+      section.classList.add('hidden');
+    });
+    bookDisplay.classList.remove('hidden'); // Ensure book display is visible
+  }
+
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm) {
+      fetchBooks(searchTerm);
+      searchInput.value = '';
+    }
   });
-});
 
-//Nav links event listeners
-aboutLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  toggleSections(aboutSection, {homeSection, suggestionsSection});
-});
+  aboutLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    hideActiveSection();
+    aboutSection.classList.remove('hidden');
+  });
 
-homeLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  toggleSections(homeSection, {aboutSection, suggestionsSection});
-});
+  homeLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    hideActiveSection();
+    homeSection.classList.remove('hidden');
+  });
 
-suggestionsLink.addEventListener('click', (event) => {
-  event.preventDefault();
-  toggleSections(suggestionsSection, {homeSection, aboutSection});
-  // fetchSuggestions();
- });
+  suggestionsLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    hideActiveSection();
+    suggestionsSection.classList.remove('hidden');
+  });
 
-//function to fetch suggested books from open library
-function fetchSuggestions(){
-  fetch('https://openlibrary.org/subjects/fiction.json?limit=5')
-  .then(res=> res.json())
-  .then(data => {
-    displaySuggestions(data.works)
-  })
-  .catch(error=>{console.log('Error:', error)})
-}
+  function initializeApp() {
+    fetchSuggestions();
+  }
 
-
-//function to display suggested books
-function displaySuggestions(books){
-  const suggestionsContainer= document.getElementById('suggestions-list')
-  suggestionsContainer.innerHTML=""
-
-  books.forEach(book=>{
-    const suggestedBook = document.createElement('div')
-    suggestedBook.classList.add('displayBookContainer')
-    suggestedBook.innerHTML =`
-      <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" alt="${book.title}">
-      <h3>Title: ${book.title}</h3>
-      <p><strong>Author:</strong> ${book.authors.map(author => author.name)}</p>
-      <a href="https://openlibrary.org${book.key}" >View Details</a>
-      `
-    suggestionsContainer.appendChild(suggestedBook)
-  })
-}
-function initializeApp(){
-  const initialSearchTerm = searchInput.value.trim();
-  fetchBooks(initialSearchTerm);
-  fetchSuggestions()
-}
   initializeApp();
-})
+});
