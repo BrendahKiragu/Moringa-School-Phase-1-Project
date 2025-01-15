@@ -10,73 +10,75 @@
     <header>
       <h1 id="page-title">Book Search Hub</h1>
       <nav>
-        <div class="burger-menu">&#x2630;</div>
+        <button class="burger-menu hidden">&#x2630;</button>
         <ul id="nav-links">
-          <li><a class="navlink" href="#home" id="home-link">Home</a></li>
-          <li><a class="navlink" href="#about" id="about-link">About</a></li>
-          <li>
-            <a class="navlink" href="#suggestions" id="suggestions-link"
-              >Suggested Books</a
-            >
-          </li>
+          <li><a class="navlink" href="#home">Home</a></li>
+          <li><a class="navlink" href="#about">About</a></li>
+          <li><a class="navlink" href="#suggestions">Suggestions</a></li>
         </ul>
       </nav>
-
-      <form id="search-form">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search for a book (author/name)..."
-        />
-        <button type="submit">Search</button>
-      </form>
-      <section>
-        <div id="loading-indicator" class="hidden">
-          Please wait while I search for your book<span class="dot">.</span
-          ><span class="dot">.</span><span class="dot">.</span>
-        </div>
-        <button id="go-back-button" class="hidden">Go to Homepage</button>
-
-        <div id="book-display">
-          <!-- Dynamically added items from book search results -->
-        </div>
-      </section>
     </header>
 
+    <form id="search-form">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search for a book (author/name)..."
+      />
+      <button type="submit" class="button">Search</button>
+    </form>
+    <section>
+      <div id="loading-indicator" class="hidden">
+        Please wait while I search for your book<span class="dot">.</span
+        ><span class="dot">.</span><span class="dot">.</span>
+      </div>
+      <!-- <button id="go-back-button" class="hidden">Go to Homepage</button> -->
+
+      <div id="book-display">
+        <!-- Dynamically added items from book search results -->
+      </div>
+    </section>
+
     <main>
-      <section id="home">
-        <h2>Welcome to Book Search Hub</h2>
-        <p><em>Find your next great read with ease.</em></p>
-        <img
-          src="https://images.unsplash.com/photo-1682333104862-c5358b05d15d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="shelf of books"
-        />
-        <hr />
-        <p>
-          <em
-            >Use the search bar above to explore books by author, title, or
-            genre!</em
-          >
-          <a href="#search-input">Search</a>
-        </p>
+      <section id="home" class="hero-content">
+        <!-- Hero with background image -->
+        <div class="hero-section">
+          <h1>Welcome to Book Search Hub</h1>
+          <p>
+            <em>Your gateway to discovering amazing reads effortlessly.</em>
+          </p>
+          <a href="#search-input" class="button">Find Books</a>
+        </div>
 
-        <img
-          src="https://plus.unsplash.com/premium_photo-1703701580104-43fb3013075a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="a woman searching for a book on a book shelf"
-        />
-        <hr />
-        <p>
-          <em>Read more <a href="#about-link">about</a> us</em>
-        </p>
+        <!-- Additional articles and paragraphs -->
+        <article class="hero-article">
+          <h2>Explore Your Next Adventure</h2>
+          <p>
+            Whether you're looking for thrilling mysteries, heartfelt romance,
+            or inspiring non-fiction, we have something for every reader.
+          </p>
+          <img
+            src="https://images.unsplash.com/photo-1682333104862-c5358b05d15d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Shelf of books"
+          />
+        </article>
 
-        <img
-          src="https://images.unsplash.com/photo-1607473129014-0afb7ed09c3a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="books on a chair"
-        />
-        <hr />
+        <article class="hero-article">
+          <h2>About Us</h2>
+          <p>
+            At Book Search Hub, we are passionate about connecting readers with
+            stories that resonate with their hearts and minds. Start exploring
+            today!
+          </p>
+          <a href="#about-link" class="button">Learn More</a>
+          <img
+            src="https://images.unsplash.com/photo-1607473129014-0afb7ed09c3a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Books on a chair"
+          />
+        </article>
       </section>
 
-      <section class="hidden" id="about">
+      <section id="about">
         <h2>About Book Search Hub</h2>
         <p><em>Experience the joy of reading with our platform:</em></p>
         <ul>
@@ -104,15 +106,116 @@
         </p>
       </section>
 
-      <section class="hidden" id="suggestions">
+      <section id="suggestions">
         <h3>Top Searches from Our Readers</h3>
         <div id="suggestions-list">
-          <ul>
-            <li>The Midnight Library by Matt Haig</li>
-            <li>Where the Crawdads Sing by Delia Owens</li>
-            <li>The Vanishing Half by Brit Bennett</li>
-            <li>Educated by Tara Westover</li>
-          </ul>
+          <!-- Card 1 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/111111-M.jpg"
+              alt="The Midnight Library"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL26303536W/The_Midnight_Library"
+                  target="_blank"
+                  >The Midnight Library</a
+                >
+              </h4>
+              <small>by Matt Haig</small>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/222222-M.jpg"
+              alt="Where the Crawdads Sing"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL36220473W/Where_the_Crawdads_Sing"
+                  target="_blank"
+                  >Where the Crawdads Sing</a
+                >
+              </h4>
+              <small>by Delia Owens</small>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/333333-M.jpg"
+              alt="The Vanishing Half"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL26403409W/The_Vanishing_Half"
+                  target="_blank"
+                  >The Vanishing Half</a
+                >
+              </h4>
+              <small>by Brit Bennett</small>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/444444-M.jpg"
+              alt="Educated"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL26408351W/Educated"
+                  target="_blank"
+                  >Educated</a
+                >
+              </h4>
+              <small>by Tara Westover</small>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/555555-M.jpg"
+              alt="The Silent Patient"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL36580899W/The_Silent_Patient"
+                  target="_blank"
+                  >The Silent Patient</a
+                >
+              </h4>
+              <small>by Alex Michaelides</small>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="suggestion-card">
+            <img
+              src="https://covers.openlibrary.org/b/id/666666-M.jpg"
+              alt="The Seven Husbands of Evelyn Hugo"
+            />
+            <div class="card-details">
+              <h4>
+                <a
+                  href="https://openlibrary.org/works/OL28795256W/The_Seven_Husbands_of_Evelyn_Hugo"
+                  target="_blank"
+                  >The Seven Husbands of Evelyn Hugo</a
+                >
+              </h4>
+              <small>by Taylor Jenkins Reid</small>
+            </div>
+          </div>
         </div>
       </section>
     </main>
