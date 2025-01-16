@@ -1,44 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const aboutSection = document.getElementById("about");
-  const homeSection = document.getElementById("home");
-  const suggestionsSection = document.getElementById("suggestions");
   const loadingIndicator = document.getElementById("loading-indicator");
+  const bookResultsSection = document.getElementById("book-results-section");
   const searchForm = document.getElementById("search-form");
   const searchInput = document.getElementById("search-input");
   const bookDisplay = document.getElementById("book-display");
 
+  // Show the loading indicator
   function showLoadingIndicator() {
     loadingIndicator.classList.remove("hidden");
+    bookResultsSection.classList.add("hidden");
   }
 
+  // Hide the loading indicator
   function hideLoadingIndicator() {
     loadingIndicator.classList.add("hidden");
+    bookResultsSection.classList.remove("hidden");
   }
 
-  const burgerMenu = document.querySelector(".burger-menu");
-  const navLinks = document.getElementById("nav-links");
-
-  burgerMenu.addEventListener("click", () => {
-    navLinks.classList.toggle("show"); // Toggle the navigation menu on burger click
-  });
-
-  // Hide burger menu after link selection
-  const navLinkItems = document.querySelectorAll("#nav-links .navlink");
-  navLinkItems.forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("show"); // Hide the menu on link click
-    });
-  });
-
+  // Fetch books based on search term
   function fetchBooks(searchTerm) {
+    if (!searchTerm) return;
+
     showLoadingIndicator();
     fetch(
       `https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}`
     )
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         const books = data.docs;
         displayBooks(books, searchTerm);
@@ -54,79 +41,45 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function displayError(message) {
-    const errorContainer = document.createElement("div");
-    errorContainer.id = "error-container";
-    errorContainer.classList.add("error");
-    errorContainer.textContent = message;
-
-    const retryButton = document.createElement("button");
-    retryButton.textContent = "Retry";
-    retryButton.addEventListener("click", () =>
-      fetchBooks(searchInput.value.trim())
-    );
-
-    errorContainer.appendChild(retryButton);
-    bookDisplay.appendChild(errorContainer);
-  }
-
+  // Display books from search result
   function displayBooks(books, searchTerm) {
-    bookDisplay.innerHTML = ""; // Reset previous content
-
-    // Remove error message if it exists
-    const errorContainer = document.getElementById("error-container");
-    if (errorContainer) {
-      errorContainer.remove();
+    if (books.length === 0) {
+      displayError(
+        `No results found for "${searchTerm}". Please try another search.`
+      );
+      return;
     }
 
-    let content = "";
-
-    // Display search result message
-    if (books.length === 0 && searchTerm) {
-      content = `<p>Could not find any books for "${searchTerm}"</p>`;
-    } else if (books.length > 0) {
-      // Display book results
-      content = `
-        <p class="my-p">Displaying search results for "${searchTerm}"</p>
-        ${books
-          .map(
-            (book) => `
-          <div class="displayBookContainer">
+    bookDisplay.innerHTML = books
+      .map(
+        (book) => ` 
+          <div class="book-card">
             <img src="https://covers.openlibrary.org/b/id/${
               book.cover_i
             }-M.jpg" alt="${book.title}">
-            <div class="book-details">
-              <h3>Title: ${book.title}</h3>
-              <p><strong>Author:</strong> ${
-                book.author_name ? book.author_name.join(", ") : "Unknown"
-              }</p>
-              <p><strong>Subjects:</strong> ${
-                book.subject_facet
-                  ? book.subject_facet.slice(0, 3).join(", ")
-                  : "Unknown"
-              }</p>
-              <p><strong>Number of Pages:</strong> ${
-                book.number_of_pages_median || "Unknown"
-              }</p>
-              <a href="https://openlibrary.org${book.key}">View Details</a>
-            </div>
+            <h3>${book.title}</h3>
+            <p><strong>Author:</strong> ${
+              book.author_name ? book.author_name.join(", ") : "Unknown"
+            }</p>
+            <p><strong>Subjects:</strong> ${
+              book.subject_facet
+                ? book.subject_facet.slice(0, 3).join(", ")
+                : "Unknown"
+            }</p>
+            <p><strong>Pages:</strong> ${
+              book.number_of_pages_median || "Unknown"
+            }</p>
+            <a href="https://openlibrary.org${
+              book.key
+            }" target="_blank">View Details</a>
           </div>`
-          )
-          .join("")}
-      `;
-    }
-
-    bookDisplay.innerHTML = content; // Inject content into the bookDisplay container
-
-    hideActiveSections(); // Hide other sections
-    bookDisplay.classList.remove("hidden"); // Show the book display section
+      )
+      .join("");
   }
 
-  function hideActiveSections() {
-    [aboutSection, homeSection, suggestionsSection].forEach((section) => {
-      section.classList.add("hidden");
-    });
-    bookDisplay.classList.remove("hidden");
+  // Display error message when no results are found
+  function displayError(message) {
+    bookDisplay.innerHTML = `<p class="error-message">${message}</p>`;
   }
 
   // Handle search form submission
@@ -135,49 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = searchInput.value.trim();
     if (searchTerm) {
       fetchBooks(searchTerm);
-      searchInput.value = "";
+      document.querySelector(".search-form").classList.add("hidden");
+      bookResultsSection.classList.remove("hidden");
     }
   });
 
-  const aboutLink = document.querySelector("#about");
-  aboutLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    hideActiveSections();
-    aboutSection.classList.remove("hidden");
+  // Burger menu toggle functionality
+  const burgerMenu = document.querySelector(".burger-menu");
+  const navLinks = document.getElementById("nav-links");
+
+  burgerMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
   });
-
-  const suggestionsLink = document.querySelector("#suggestions");
-  suggestionsLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    hideActiveSections();
-    suggestionsSection.classList.remove("hidden");
-  });
-
-  // Function to hide all sections
-  function hideAllSections() {
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => section.classList.add("hidden"));
-  }
-  // Function to show a specific section
-  function showSection(id) {
-    hideAllSections();
-    const section = document.getElementById(id);
-    if (section) {
-      section.classList.remove("hidden");
-    }
-  }
-  document.querySelectorAll(".navlink").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetSection = e.target.getAttribute("href").substring(1); // Removes '#' from href attribute
-      showSection(targetSection);
-    });
-  });
-
-  function initializeApp() {
-    hideActiveSections();
-    homeSection.classList.remove("hidden");
-  }
-
-  initializeApp();
 });

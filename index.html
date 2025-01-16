@@ -10,7 +10,7 @@
     <header>
       <h1 id="page-title">Book Search Hub</h1>
       <nav>
-        <button class="burger-menu hidden">&#x2630;</button>
+        <button class="burger-menu">&#x2630;</button>
         <ul id="nav-links">
           <li><a class="navlink" href="#home">Home</a></li>
           <li><a class="navlink" href="#about">About</a></li>
@@ -19,91 +19,87 @@
       </nav>
     </header>
 
-    <form id="search-form">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search for a book (author/name)..."
-      />
-      <button type="submit" class="button">Search</button>
-    </form>
-    <section>
-      <div id="loading-indicator" class="hidden">
-        Please wait while I search for your book<span class="dot">.</span
-        ><span class="dot">.</span><span class="dot">.</span>
-      </div>
-      <!-- <button id="go-back-button" class="hidden">Go to Homepage</button> -->
-
-      <div id="book-display">
-        <!-- Dynamically added items from book search results -->
-      </div>
-    </section>
-
     <main>
+      <!-- Hero Section -->
       <section id="home" class="hero-content">
-        <!-- Hero with background image -->
         <div class="hero-section">
           <h1>Welcome to Book Search Hub</h1>
           <p>
             <em>Your gateway to discovering amazing reads effortlessly.</em>
           </p>
-          <a href="#search-input" class="button">Find Books</a>
+          <a href="#search-input" class="cta-button">Start Searching</a>
         </div>
-
-        <!-- Additional articles and paragraphs -->
-        <article class="hero-article">
-          <h2>Explore Your Next Adventure</h2>
-          <p>
-            Whether you're looking for thrilling mysteries, heartfelt romance,
-            or inspiring non-fiction, we have something for every reader.
-          </p>
-          <img
-            src="https://images.unsplash.com/photo-1682333104862-c5358b05d15d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Shelf of books"
-          />
-        </article>
-
-        <article class="hero-article">
-          <h2>About Us</h2>
-          <p>
-            At Book Search Hub, we are passionate about connecting readers with
-            stories that resonate with their hearts and minds. Start exploring
-            today!
-          </p>
-          <a href="#about-link" class="button">Learn More</a>
-          <img
-            src="https://images.unsplash.com/photo-1607473129014-0afb7ed09c3a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Books on a chair"
-          />
-        </article>
       </section>
 
+      <!-- Search Form Section -->
+      <form id="search-form">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for a book (author/name)..."
+        />
+        <button type="submit" class="cta-button">Search</button>
+      </form>
+
+      <section>
+        <div id="loading-indicator" class="hidden">
+          Please wait while I search for your book<span class="dot">.</span
+          ><span class="dot">.</span><span class="dot">.</span>
+        </div>
+
+        <!-- Add the missing book-results-section -->
+        <div id="book-results-section" class="hidden">
+          <div id="book-display">
+            <!-- Dynamically added items from book search results -->
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- About Section -->
       <section id="about">
-        <h2>About Book Search Hub</h2>
-        <p><em>Experience the joy of reading with our platform:</em></p>
-        <ul>
-          <li>
-            <u>Efficient Search:</u> Quickly find books by title, author, or
-            genre.
-          </li>
-          <li>
-            <u>In-depth Information:</u> Read comprehensive summaries and
-            reviews.
-          </li>
-          <li>
-            <u>Author Spotlights:</u> Discover more about your favorite authors.
-          </li>
-          <li>
-            <u>Easy Navigation:</u> Browse through various categories
-            effortlessly.
-          </li>
-        </ul>
+        <h2>Welcome to Book Search Hub</h2>
         <p>
           <em
-            >Dive into the world of books and broaden your literary
-            horizons!</em
+            >Your ultimate destination for discovering amazing books
+            effortlessly.</em
           >
         </p>
+        <div class="about-content">
+          <p>
+            At Book Search Hub, we are passionate about helping readers connect
+            with books that inspire, entertain, and enlighten. Our platform is
+            designed to be a haven for book lovers, providing tools and
+            resources to elevate your reading experience.
+          </p>
+          <h3>Why Choose Us?</h3>
+          <ul>
+            <li>
+              <strong>🔍 Efficient Search:</strong> Find books instantly by
+              title, author, or genre with advanced search filters.
+            </li>
+            <li>
+              <strong>📚 Comprehensive Insights:</strong> Explore detailed
+              summaries, reviews, and ratings to pick your perfect read.
+            </li>
+            <li>
+              <strong>✨ Author Highlights:</strong> Dive into the lives and
+              works of your favorite authors with dedicated spotlights.
+            </li>
+            <li>
+              <strong>📂 Intuitive Navigation:</strong> Seamlessly browse
+              categories, trending books, and personalized recommendations.
+            </li>
+          </ul>
+          <p>
+            <em
+              >Join a community of readers, explore new genres, and discover
+              stories that resonate with you.</em
+            >
+          </p>
+          <a href="#" class="button">Explore Now</a>
+        </div>
       </section>
 
       <section id="suggestions">
