@@ -1,4 +1,8 @@
 /* General reset and body styling */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Arial", sans-serif;
   margin: 0;
@@ -38,22 +42,15 @@ header {
 }
 
 .burger-menu {
-  font-size: 2em;
-  margin-right: 40px;
-  cursor: pointer;
+  display: none; /* Hide burger icon by default */
 }
 
 #nav-links {
   list-style: none;
-  display: flex;
+  display: flex; /* Always display the nav links horizontally */
   margin-right: 3rem;
   padding: 0;
   gap: 20px;
-}
-
-#nav-links.show {
-  display: block;
-  transform: translateY(0);
 }
 
 #nav-links .navlink {
@@ -80,7 +77,8 @@ header {
   padding-top: 80px; /* Adjust for header overlap */
 }
 
-.hero-section, #search-form {
+.hero-section,
+#search-form {
   background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background color */
   padding: 2rem;
   border-radius: 10px;
@@ -127,6 +125,12 @@ header {
   border: 1px solid #ddd;
   border-radius: 15px;
   margin-right: 0.5rem;
+}
+
+#loading-indicator {
+  text-align: center;
+  color: #4caf50;
+  font-size: 2rem;
 }
 
 /* About Section */
@@ -247,35 +251,14 @@ footer {
   background-color: #333;
   color: #fff;
 }
-.burger-menu {
-  display: none; /* Hide burger icon by default */
-  cursor: pointer;
-  font-size: 30px;
-  background: none;
-  border: none;
-}
 
-/* Media Queries */
+/* Media Queries - No burger menu used */
 @media (max-width: 768px) {
-  .burger-menu {
-    display: block; /* Show the burger menu icon on mobile */
-  }
-  .hero-section {
-    height: auto;
-    padding: 2rem 1rem;
-  }
-
-  nav .burger-menu {
-    display: block;
-  }
-
+  /* Adjust header to not rely on burger menu */
   #nav-links {
     flex-direction: column;
-    display: none;
-  }
-
-  nav .burger-menu.active + #nav-links {
-    display: flex;
+    display: flex; /* Make sure the links are visible */
+    margin: 0;
   }
 
   .hero-content h1 {
@@ -292,6 +275,11 @@ footer {
 }
 
 @media (min-width: 768px) {
+  /* Adjust header for larger screens */
+  #nav-links {
+    display: flex; /* Always show the nav links on larger screens */
+  }
+
   .hero-article {
     flex-direction: row;
   }
@@ -304,15 +292,4 @@ footer {
   .article-details {
     width: 50%;
   }
-}
-
-/* Scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Styling the horizontal line */
-hr {
-  border: 1px solid #ddd;
-  margin: 40px 0;
 }
